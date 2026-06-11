@@ -1,4 +1,4 @@
-# Scoring de Risque Crédit — Probabilité de Défaut Calibrée
+﻿# Scoring de Risque Crédit — Probabilité de Défaut Calibrée
 
 > **Modèle calibré, KS Statistic, Gini et analyse d'équité algorithmique**
 
@@ -114,9 +114,9 @@ Validation temporelle sur données historiques. Interface explicabilité RGPD.
 
 ---
 
-## Auteur
+## Contributors
 
-**Emmanuel TSAGUE** — Data Scientist / Data Analyst
+**TSAGUE Emmanuel** — Data Scientist / Data Analyst
 Domaine : Finance · Credit Risk · Éthique ML · Réglementation
 GitHub : [TSAGUE25](https://github.com/TSAGUE25)
 
