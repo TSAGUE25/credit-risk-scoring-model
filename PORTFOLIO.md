@@ -1,14 +1,13 @@
 # CAS D'USAGE 13 — Scoring de Risque Crédit
 ## Modéliser la probabilité de défaut et calibrer un score pour l'octroi de crédit
 
-> **Auteur :** Emmanuel TSAGUE — Data Scientist / Data Analyst  
+> **Auteur :** TSAGUE EMMANUEL — Data Scientist / Data Analyst  
 > **Domaine :** Finance, Credit Risk, Calibration, Éthique ML  
 > **Repository GitHub :** `credit-risk-scoring-model`  
 > **Statut :** Portfolio — données simulées  
 > **Date :** Juin 2026
 
 ---
-
 ## 1. TITRE ET RÉSUMÉ EXÉCUTIF
 
 **"Scoring crédit calibré : probabilité de défaut, KS statistic et analyse de biais pour un modèle équitable"**
@@ -22,7 +21,6 @@ Ce projet construit un modèle de scoring crédit sur 20 000 dossiers simulés. 
 **Résultats simulés :** KS = 0,52 | Gini = 0,71 | AUC = 0,855.
 
 ---
-
 ## 2. CONTEXTE RÉGLEMENTAIRE ET ÉTHIQUE
 
 > **RGPD et équité algorithmique :** un modèle de scoring crédit ne peut pas discriminer sur la base du sexe, de l'origine ethnique, de l'âge (en dehors de certaines limites légales) ou de la religion. Des variables comme le code postal peuvent introduire un biais indirect de discrimination géographique.
@@ -36,7 +34,6 @@ Ce projet construit un modèle de scoring crédit sur 20 000 dossiers simulés. 
 | Calibration | La probabilité prédite doit correspondre à la réalité |
 
 ---
-
 ## 3. GÉNÉRATION DES DONNÉES SIMULÉES
 
 ```python
@@ -91,7 +88,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```
 
 ---
-
 ## 4. FEATURE ENGINEERING — VARIABLES MÉTIER
 
 ```python
@@ -113,7 +109,6 @@ X_test  = engineer_features(X_test)
 ```
 
 ---
-
 ## 5. MODÈLE DE SCORING
 
 ```python
@@ -162,7 +157,6 @@ for nom, pipe in [("Logistic Regression", pipe_lr), ("Gradient Boosting", pipe_g
 ```
 
 ---
-
 ## 6. CALIBRATION DES PROBABILITÉS
 
 > **Calibration :** un modèle est bien calibré si, parmi les dossiers à qui il attribue une probabilité de défaut de 30 %, environ 30 % font effectivement défaut. Un modèle non calibré peut surestimer ou sous-estimer les risques.
@@ -203,7 +197,6 @@ plt.savefig("figures/credit_calibration.png", dpi=150, bbox_inches="tight")
 ```
 
 ---
-
 ## 7. KS STATISTIC — MÉTRIQUE STANDARD DU CRÉDIT
 
 > **KS Statistic (Kolmogorov-Smirnov) :** métrique de discrimination standard dans l'industrie bancaire. Mesure la distance maximale entre les distributions cumulées des scores pour les bons et mauvais payeurs. KS > 0,4 est considéré "bon" dans le scoring crédit.
@@ -245,7 +238,6 @@ plt.savefig("figures/credit_ks_curve.png", dpi=150, bbox_inches="tight")
 ```
 
 ---
-
 ## 8. SEUIL D'ACCEPTATION ET POLITIQUE DE CRÉDIT
 
 ```python
@@ -267,7 +259,6 @@ print(df_seuils.round(3).to_string(index=False))
 ```
 
 ---
-
 ## 9. ANALYSE DES BIAIS ET ÉQUITÉ
 
 > **Biais algorithmique :** quand un modèle traite différemment des groupes protégés (sexe, âge, origine). En crédit, un biais peut résulter des données historiques qui reflètent des discriminations passées.
@@ -291,7 +282,6 @@ print(X_test_df.groupby("type_emploi")["accepte"].mean().apply(
 ```
 
 ---
-
 ## 10. ARCHITECTURE GITHUB
 
 ```
@@ -315,63 +305,6 @@ credit-risk-scoring-model/
 ```
 
 ---
-
-## 11. README GITHUB
-
-```markdown
-# Credit Risk Scoring Model
-## Modèle de scoring crédit calibré avec analyse d'équité algorithmique
-
-> **Auteur :** Emmanuel TSAGUE | **Données :** simulées
-
-## Résultats (simulés)
-KS = 0.52 · Gini = 0.71 · AUC = 0.855 · Calibration vérifiée
-
-## Sujets couverts
-Probabilité de défaut · Calibration · KS Statistic · Gini
-Seuil d'acceptation · Disparate Impact · RGPD AI Act
-```
-
----
-
-## 12. VERSION CV
-
-> Scoring de risque crédit sur 20 000 dossiers simulés : feature engineering (ratio d'effort, leverage), Gradient Boosting calibré par Isotonic Regression, KS statistic (0,52), Gini (0,71), AUC (0,855), optimisation du seuil d'acceptation, analyse disparate impact pour l'équité algorithmique — Python, sklearn, scipy.
-
----
-
-## 13. VERSION ENTRETIEN
-
-"J'ai construit un modèle de scoring crédit avec trois dimensions clés au-delà de la simple AUC. Premièrement, la calibration : la probabilité prédite doit correspondre à la réalité — un modèle qui prédit 30 % de défaut doit avoir 30 % de défauts réels dans ce groupe. J'ai utilisé l'isotonic regression pour calibrer. Deuxièmement, les métriques sectorielles : en crédit on utilise le KS statistic (distance max entre les CDF des bons et mauvais) et le Gini (2×AUC-1). Troisièmement, l'équité algorithmique : j'ai calculé le disparate impact par groupe d'emploi pour vérifier l'absence de discrimination indirecte."
-
----
-
-## 14. POST LINKEDIN
-
-**Un modèle de scoring crédit n'est pas qu'une AUC.**
-
-Il doit répondre à trois questions que les banques posent vraiment :
-
-1. **Discrimination** : le modèle sépare-t-il bien les bons et mauvais payeurs ? → KS Statistic, Gini
-2. **Calibration** : les probabilités prédites correspondent-elles à la réalité ? → Courbe de calibration, Platt Scaling
-3. **Équité** : le modèle traite-t-il différents groupes de façon équitable ? → Disparate Impact, règle des 4/5
-
-C'est ce que j'ai implémenté dans ce cas d'usage : 20 000 dossiers simulés, Gradient Boosting calibré, KS = 0,52, analyse des biais par catégorie d'emploi.
-
-`#CreditRisk` `#Finance` `#MachineLearning` `#Equité` `#RGPD` `#DataScience`
-
----
-
-## 15. QUESTIONS D'ENTRETIEN
-
-**Q : Pourquoi calibrer les probabilités d'un modèle ?**
-> Pour la prise de décision financière, la probabilité absolue compte. Si le modèle dit "30 % de risque" mais qu'en réalité c'est 45 %, la banque sous-estime son risque. La calibration garantit que la probabilité prédite est interprétable comme une vraie probabilité. Un Random Forest non calibré tend à sous-estimer les probabilités extrêmes (proches de 0 ou 1).
-
-**Q : Quelle est la différence entre KS et AUC ?**
-> Les deux mesurent la discrimination. L'AUC intègre la performance sur tous les seuils. Le KS prend le seuil où la séparation est maximale. En pratique bancaire, le KS est plus communément utilisé car il correspond à un seuil de coupure opérationnel.
-
----
-
 ## 16. COMPÉTENCES DÉMONTRÉES
 
 | Compétence | Preuve |
@@ -384,4 +317,22 @@ C'est ce que j'ai implémenté dans ce cas d'usage : 20 000 dossiers simulés, G
 
 ---
 
-*Fin du document — Emmanuel TSAGUE — CAS 13 — Risque Crédit*
+*Fin du document — TSAGUE EMMANUEL — CAS 13 — Risque Crédit*
+---
+
+## Contact & Liens
+
+**TSAGUE EMMANUEL** - Data Scientist
+
+| | |
+|---|---|
+| Email | [emmatsague@yahoo.fr](mailto:emmatsague@yahoo.fr) |
+| GitHub | [github.com/TSAGUE25](https://github.com/TSAGUE25) |
+| Formation | Datascientest 2024 |
+| Experience | EDF MAD EDVANCE |
+| Domaines | Machine Learning - Data Analysis - Energie |
+
+---
+
+> Toutes les donnees de ce depot sont simulees et anonymisees.  
+> Aucune donnee reelle ou confidentielle n'est presente.
