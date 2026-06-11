@@ -327,6 +327,7 @@ credit-risk-scoring-model/
 | | |
 |---|---|
 | Email | [emmatsague@yahoo.fr](mailto:emmatsague@yahoo.fr) |
+| LinkedIn | [emmanuel-tsague-114295414](https://www.linkedin.com/in/emmanuel-tsague-114295414) |
 | GitHub | [github.com/TSAGUE25](https://github.com/TSAGUE25) |
 | Formation | Datascientest 2024 |
 | Experience | EDF MAD EDVANCE |
